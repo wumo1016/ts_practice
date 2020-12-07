@@ -1,4 +1,3 @@
-
 // 冒号后面的都是类型
 
 // 简单类型
@@ -25,5 +24,3 @@ enum USER_ROLE {
   MANAHGER,
   ADMIN
 }
-
-
