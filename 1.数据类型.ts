@@ -18,9 +18,14 @@ const arr: number[] = [1, 2, 3]
 // 元组 值必须与定义的类型一一对应
 const tuple: [string, number] = ['12', 123]
 
-// 枚举
-enum USER_ROLE {
-  USER,
-  MANAHGER,
-  ADMIN
+
+// 字符串字面量类型
+type test3 = 'up' | 'down'
+let data1: test3 = 'up'
+
+// 交叉类型
+interface IName{
+  name: string
 }
+type IPerson = IName & { age: number }
+let person1: IPerson = { name: '123', age: 123 }

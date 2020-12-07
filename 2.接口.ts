@@ -11,7 +11,7 @@ const school1: school = {
   age: 123,
 }
 
-// 接口可扩展
+// 接口可扩展 接口继承
 interface mySchool extends school {
   type: string,
   [key: string]: any // 可以添加多个任意属性
