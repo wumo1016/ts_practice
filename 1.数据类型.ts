@@ -12,7 +12,7 @@ const create = (obj: object) => { }
 // 联合类型
 let age: string | number = 2
 
-// 数组 对象 函数
+// 数组
 const arr: number[] = [1, 2, 3]
 
 // 元组 值必须与定义的类型一一对应
@@ -24,7 +24,7 @@ type test3 = 'up' | 'down'
 let data1: test3 = 'up'
 
 // 交叉类型
-interface IName{
+interface IName {
   name: string
 }
 type IPerson = IName & { age: number }

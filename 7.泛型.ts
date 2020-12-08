@@ -23,3 +23,45 @@ function echoWithArr<T extends IWithLength>(arg: T): T{
 echo('12345')
 echo([1,2,3])
 
+class Queue {
+  private data = []
+  push(item){
+    return this.data.push(item)
+  }
+  pop(){
+    return this.data.pop()
+  }
+}
+const queue1 = new Queue()
+queue1.push(1)
+queue1.push('str')
+console.log(queue1.pop().toFixed())
+console.log(queue1.pop().toFixed())  // 编译的时候才报错
+
+// 泛型类
+class Queue1<T> {
+  private data = []
+  push(item: T){
+    return this.data.push(item)
+  }
+  pop(): T{
+    return this.data.pop()
+  }
+}
+const queue2 = new Queue1<number>()
+queue2.push(1)
+// queue2.push('str') 报错
+
+// 泛型接口
+interface KeyPair<K, V> {
+  key: K,
+  value: V
+}
+
+let kp1: KeyPair<string, number> = {
+  key: '123',
+  value: 123,
+}
+
+// 泛型数组
+const arr1: Array<string> = ['1']
