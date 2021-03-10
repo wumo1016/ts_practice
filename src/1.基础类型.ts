@@ -9,18 +9,12 @@ const u: undefined = undefined
 const array: any[] = []
 const create = (obj: object) => { }
 
-// 联合类型
-let age: string | number = 2
-
-// 数组 对象 函数
+// 数组
 const arr: number[] = [1, 2, 3]
 
 // 元组 值必须与定义的类型一一对应
 const tuple: [string, number] = ['12', 123]
 
-// 枚举
-enum USER_ROLE {
-  USER,
-  MANAHGER,
-  ADMIN
-}
+// 字符串字面量类型
+type test3 = 'up' | 'down'
+let data1: test3 = 'up'
