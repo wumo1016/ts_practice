@@ -1,2 +1,2 @@
-let str1:string = '123'
-console.log(str1);
+import './1.基础类型'
+
