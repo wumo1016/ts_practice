@@ -1,24 +1,25 @@
 // 冒号后面的都是类型
 
-/* 最基本的三个类型 boolean number string */
+/* ------ 最基本的三个类型 boolean number string --------- */
 let bool: boolean = true
 let num: number = 1
 let str: string = ''
 // 可以用大的 但是大的是属于包装器 如果使用new只能用大写的
 // str = new String(123) // 不能将类型“String”分配给类型“string”
 
-/* 数组 */
+/* --------------------- 数组 -------------------------- */
 let arr: number[] = [1, 2, 3]
 let arr2: (number | string)[] = [1, 2, '3']
 let arr3: any[] = [1, '2', {}]
 let arr4: Array<number> = [1, 2, 3]
 
-/* 元组 值必须与定义的类型一一对应 */
+/* --------------------- 元组 ------------------------------ */
+// 值必须与定义的类型一一对应
 let tuple: [string, number] = ['12', 123]
 tuple.push(1) // 可以放入元组已经定义的类型
 // tuple[3] = 123 // 也不能通过索引添加元素
 
-/* 枚举 */
+/* ---------------------- 枚举 ----------------------------- */
 // 普通枚举
 enum DIRECTION { // 大写是规范
   UP,
@@ -45,7 +46,7 @@ const enum DIRECTION2 { // 编译的时候 获取的直接值(普通是这样DIR
 }
 // console.log(DIRECTION2.UP);
 
-/* 其他类型---- unknow any void null undefined never object symbol bigint */
+/* ---------- 其他类型 unknow any void null undefined never object symbol bigint -------------- */
 let unknow: unknown = 1
 
 let unknow1: any = 1
