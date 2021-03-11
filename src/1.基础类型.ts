@@ -79,3 +79,5 @@ console.log(max + 1 === max + 2); // true
 console.log(BigInt(max) + BigInt(1) === BigInt(max) + BigInt(2)); // false
 console.log(max);                      // 9007199254740991
 console.log(BigInt(max) + BigInt(1));  // 9007199254740992n
+
+export {}
