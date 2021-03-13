@@ -117,4 +117,12 @@ class Cellphone implements Radio, Battery {
   }
 }
 
+// 抽象类 不能被实例化(new)
+abstract class Animal1 {
+  abstract name: string // 没有具体实现 需要子类实现 且子类必须实现
+  eat(){ // 子类可以没有
+    console.log('eat');
+  }
+}
+
 export { }
