@@ -3,8 +3,8 @@
 function echo<T>(a: T): T{
   return a
 }
-echo(123)
-echo('123')
+echo<number>(123)
+echo('123') // 也可以不传 会自动推断
 
 // 多个泛型
 // 例子： 类型交换
@@ -24,8 +24,8 @@ echo('12345')
 echo([1,2,3])
 
 class Queue {
-  private data = []
-  push(item){
+  private data: any[] = []
+  push(item: any){
     return this.data.push(item)
   }
   pop(){
@@ -40,7 +40,7 @@ console.log(queue1.pop().toFixed())  // 编译的时候才报错
 
 // 泛型类
 class Queue1<T> {
-  private data = []
+  private data: any[] = []
   push(item: T){
     return this.data.push(item)
   }
