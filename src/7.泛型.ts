@@ -1,6 +1,7 @@
+import { type } from "node:os"
 
 // 例子： 传入什么类型，返回什么类型
-function echo<T>(a: T): T{
+function echo<T>(a: T): T {
   return a
 }
 echo<number>(123)
@@ -16,19 +17,19 @@ const swap = <T, K>(tuple: [T, K]): [K, T] => {
 interface IWithLength {
   length: number
 }
-function echoWithArr<T extends IWithLength>(arg: T): T{
+function echoWithArr<T extends IWithLength>(arg: T): T {
   console.log(arg.length)
   return arg
 }
 echo('12345')
-echo([1,2,3])
+echo([1, 2, 3])
 
 class Queue {
   private data: any[] = []
-  push(item: any){
+  push(item: any) {
     return this.data.push(item)
   }
-  pop(){
+  pop() {
     return this.data.pop()
   }
 }
@@ -38,13 +39,24 @@ queue1.push('str')
 console.log(queue1.pop().toFixed())
 console.log(queue1.pop().toFixed())  // 编译的时候才报错
 
+
+// keyof K就是必须是T中的key
+const getValue = <T extends object, K extends keyof T>(obj: T, key: K) => {
+
+}
+getValue({ a: 1, b: 2 }, 'a')
+
+type T1 = keyof { a: 1, b: 2 }
+type T2 = keyof string // string的所有属性
+type T3 = keyof any // string | number | symbol
+
 // 泛型类
 class Queue1<T> {
   private data: any[] = []
-  push(item: T){
+  push(item: T) {
     return this.data.push(item)
   }
-  pop(): T{
+  pop(): T {
     return this.data.pop()
   }
 }
