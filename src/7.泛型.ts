@@ -36,8 +36,7 @@ class Queue {
 const queue1 = new Queue()
 queue1.push(1)
 queue1.push('str')
-console.log(queue1.pop().toFixed())
-console.log(queue1.pop().toFixed())  // 编译的时候才报错
+// console.log(queue1.pop().toFixed())  // 编译的时候才报错
 
 
 // keyof K就是必须是T中的key
@@ -63,6 +62,16 @@ class Queue1<T> {
 const queue2 = new Queue1<number>()
 queue2.push(1)
 // queue2.push('str') 报错
+
+class My {
+  eat(){}
+}
+
+function createInstance<T>(clazz: { new (): T }){ // new () 表示My类 然后返回My的实例
+  return new clazz()
+}
+
+const ins1 = createInstance<My>(My)
 
 // 泛型接口
 interface KeyPair<K, V> {

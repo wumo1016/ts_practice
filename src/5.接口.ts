@@ -1,4 +1,4 @@
-// 用来描述对象形状和结构 interface
+// 用来描述对象形状和结构(规范对象结构) interface
 // interface 可以被类实现和继承
 // type 可以使用联合类型
 
@@ -7,7 +7,7 @@ interface school {
   readonly name: string, // 只读
   age: number, // 后面的逗号可以不写 也可以是分号等
   address?: string, // ? 表示这个属性可选
-} 
+}
 
 const school1: school = {
   name: '小红',
@@ -42,7 +42,7 @@ interface IVegettables {
 }
 
 // 接口可扩展 接口继承
- interface mySchool extends school {
+interface mySchool extends school {
   type: string,
   [key: string]: any // 可以添加多个任意属性
 }
