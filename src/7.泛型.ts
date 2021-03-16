@@ -74,12 +74,12 @@ function createInstance<T>(clazz: { new (): T }){ // new () 表示My类 然后�
 const ins1 = createInstance<My>(My)
 
 // 泛型接口
-interface KeyPair<K, V> {
+interface KeyPair<K, V = number> {
   key: K,
   value: V
 }
 
-let kp1: KeyPair<string, number> = {
+let kp1: KeyPair<string> = {
   key: '123',
   value: 123,
 }
