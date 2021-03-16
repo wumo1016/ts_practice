@@ -39,4 +39,32 @@ function getLength1(data: string | number): number {
 // 类型别名
 type test1 = string | number
 
+// 类型保护
+class P1 {
+  eat1() {
+  }
+}
+class P2 {
+  eat2() {
+  }
+}
+function createClass(clazz: new () => P1 | P2) {
+  const r = new clazz
+  if (r instanceof P1) {
+    console.log(r.eat1);
+  } else {
+    console.log(r.eat2);
+  }
+  return r
+}
+
+// is语法 用来定义自己的类型
+function isString(val: any): val is string { // 判定就是字符串
+  return Object.prototype.toString.call(val) === '[object String]'
+}
+let str = '1'
+if (isString(str)) {
+  console.log(str);
+}
+
 export { }
