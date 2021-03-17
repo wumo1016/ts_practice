@@ -20,14 +20,16 @@ let i2: I2 = { name: 'wyb', age: 456 }
 i1 = i2
 // i2 = i1 // 类型 "I1" 中缺少属性 "age"，但类型 "I2" 中需要该属性
 
-// 函数 参数个数兼容性
+// 函数 参数个数兼容性(少的可以赋给多的)
 let sum1 = (a: string, b: string): string => a + b
 let sum2 = (a: string): string => a
 sum1 = sum2
-// 函数 返回值兼容性
+// 函数 返回值兼容性(多的可以赋给少的)
 type sum3 = (a: string, b: string) => { name: string }
 type sum4 = (a: string) => { name: string, age: number }
-sum1 = sum2
+let s3!: sum3
+let s4!: sum4
+s3 = s4
 
 // 参数是逆变可以传父类 函数的返回值是协变可以传子类
 

@@ -1,4 +1,7 @@
 /* ----------------- union types 联合类型 ---------------- */
+
+import { type } from "node:os"
+
 // 确定类型之前只能调用公共的方法
 let union: string | number
 
@@ -64,5 +67,23 @@ let str = '1'
 if (isString(str)) {
   console.log(str);
 }
+
+// 条件类型
+interface Fish {
+  name: string
+  type: '鱼'
+}
+interface Bird {
+  name: string
+  type: "鸟"
+}
+interface Swiming {
+  swiming: string
+}
+interface Sky {
+  sky: string
+}
+type MyType<T> = T extends Bird ? Sky : Swiming // 如果传入的是联合类型 就会进行条件的分发
+type IEnv = MyType<Bird>
 
 export { }
