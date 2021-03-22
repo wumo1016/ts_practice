@@ -6,4 +6,5 @@
 // import './6.类'
 // import './7.泛型'
 // import './10.其他'
-import './11.自定义类型'
+// import './11.自定义类型'
+import './12.命名空间'
