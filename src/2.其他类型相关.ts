@@ -1,7 +1,5 @@
 /* ----------------- union types 联合类型 ---------------- */
 
-import { type } from "node:os"
-
 // 确定类型之前只能调用公共的方法
 let union: string | number
 
@@ -18,18 +16,18 @@ let data1: test2 = 'up'
 type test3 = '1' | '2'
 let test4: test3
 
-
-// type inference 类型推论
+/* ---------------------- type inference 类型推论 ----------------------- */
 let a = 123
 
-// 交叉类型 如果两个属性的类型不一样 则会变成 never 类型
+/* -------------------------- 交叉类型 ------------------------------------ */
+//  如果两个属性的类型不一样 则会变成 never 类型
 interface IName {
   name: string
 }
 type IPerson1 = IName & { age: number }
 let person1: IPerson1 = { name: '123', age: 123 }
 
-// type guard 类型守卫
+/* ----------------------- type guard 类型守卫 --------------------------- */
 function getLength1(data: string | number): number {
   if (typeof data === 'string') {
     return data.length
@@ -56,10 +54,8 @@ function createClass(clazz: new () => P1 | P2) {
   return r
 }
 
-// 类型别名
-type test1 = string | number
-
-// is语法 用来定义自己的类型
+/* --------------------- is语法 -------------------------- */
+//  用来定义自己的类型
 function isString(val: any): val is string { // 判定就是字符串
   return Object.prototype.toString.call(val) === '[object String]'
 }
@@ -68,7 +64,7 @@ if (isString(str)) {
   console.log(str);
 }
 
-// 条件类型
+/* ------------------------ 条件类型 ---------------------------- */
 interface Fish {
   name: string
   type: '鱼'
