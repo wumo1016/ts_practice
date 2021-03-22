@@ -51,3 +51,16 @@ function getFn(cb: (person: Child) => Child){
 
 getFn((person: Parent) => new Child)
 getFn((person: Parent) => new Grandson)
+
+
+// unknown 是any的安全类型
+let u: any
+u.xx()
+
+// unknown 不能通过变量取值
+// unknown 和其他类型联合类型都是 unknown
+// unknown 和其他类型交叉类型都是其他类型v  v
+let u1: unknown 
+u1.xx()
+
+export {}
