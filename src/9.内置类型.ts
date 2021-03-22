@@ -66,3 +66,5 @@ interface IPerson2 {
   age: number
 }
 type Mypick = Pick<IPerson2, 'name' | 'age'>
+
+/* Extract 排除共有的属性 */
