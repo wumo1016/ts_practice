@@ -16,8 +16,8 @@ let arr4: Array<number> = [1, 2, 3]
 /* --------------------- 元组 ------------------------------ */
 // 值必须与定义的类型一一对应
 let tuple: [string, number] = ['12', 123]
-tuple.push(1) // 可以放入元组已经定义的类型
-// tuple[3] = 123 // 也不能通过索引添加元素
+tuple.push(1) // 可以放入元组已经定义的类型 但是不能通过索引拿到多余的元素
+// tuple[3] = 123 // 不能通过索引添加元素
 
 /* ---------------------- 枚举 ----------------------------- */
 // 普通枚举
@@ -68,7 +68,7 @@ function unknow7(): never {
 }
 
 // {} [] function
-let unknow8 = (obj: object) => { }
+let unknow8 = (obj: object) => []
 
 let unknow9: symbol = Symbol()
 

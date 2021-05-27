@@ -1,5 +1,3 @@
-import { type } from "node:os"
-
 // 例子： 传入什么类型，返回什么类型
 function echo<T>(a: T): T {
   return a
