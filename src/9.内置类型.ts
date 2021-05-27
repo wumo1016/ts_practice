@@ -1,4 +1,3 @@
-import { type } from "node:os"
 
 // global objects
 const n1: Array<number> = [1, 2, 2]
