@@ -51,6 +51,9 @@ let unknow: unknown = 1
 
 let unknow1: any = 1
 
+// any可以分配给其他类型 其他类型也都可以分配给any
+// 其他类型也都可以分配给unkonw 但是unkonw不能分配给其他类型
+
 // void只能赋值 null或undefined
 function unknow3(): void { }
 
