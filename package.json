@@ -1,20 +1,12 @@
 {
   "name": "ts_practice",
   "version": "1.0.0",
-  "description": "- TS是JS的扩展(超集)\r - TS是不能直接在浏览器中运行 需要编译成JS\r - 可以在开发时提供丰富的语法提示",
-  "main": "rollup.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://oauth2: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@github.com/wumo1016/ts_practice.git"
-  },
-  "keywords": [],
-  "author": "",
+  "author": "wumo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wumo1016/ts_practice/issues"
-  },
-  "homepage": "https://github.com/wumo1016/ts_practice#readme"
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }
