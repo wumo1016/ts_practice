@@ -1,23 +1,20 @@
 {
   "name": "ts_practice",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "- TS是JS的扩展(超集)\r - TS是不能直接在浏览器中运行 需要编译成JS\r - 可以在开发时提供丰富的语法提示",
+  "main": "rollup.config.js",
   "scripts": {
-    "start": "rollup -cw"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://oauth2: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@github.com/wumo1016/ts_practice.git"
   },
   "keywords": [],
-  "author": "wuyibo <760478279wyb@gmail.com>",
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^11.2.0",
-    "@types/jquery": "^3.5.5",
-    "rollup": "^2.41.0",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.2.3"
+  "bugs": {
+    "url": "https://github.com/wumo1016/ts_practice/issues"
   },
-  "dependencies": {
-    "redux": "^4.0.5"
-  }
+  "homepage": "https://github.com/wumo1016/ts_practice#readme"
 }
