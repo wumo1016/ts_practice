@@ -8,3 +8,5 @@
 // import './10.其他'
 // import './11.自定义类型'
 // import './12.命名空间'
+
+import Home from '@/home/index'
