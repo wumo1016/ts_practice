@@ -1,4 +1,5 @@
 // 冒号后面的都是类型
+// 直接表明类型的叫做 类型注解
 
 /* ------ 最基本的三个类型 boolean number string --------- */
 let bool: boolean = true
