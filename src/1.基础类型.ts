@@ -62,12 +62,18 @@ function unknow3(): void {}
 let unknow4: null = null
 let unknow5: undefined = undefined
 
-// 代码无法到达终点 无法执行到结尾 出错 死循环 永远走不到的判断
+// 永远走不到的判断/代码无法到达终点/无法执行到结尾/出错/死循环
 // never也是其他类型的子类型
-function unknow6(): never {
+function unknow11(val: string) {
+  if (typeof val === 'string') {
+  } else {
+    console.log(val) // 永远走不到的判断 此时val就是never类型
+  }
+}
+function unknow6() {
   throw '123'
 }
-function unknow7(): never {
+function unknow7() {
   while (true) {}
 }
 

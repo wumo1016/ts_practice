@@ -1,3 +1,4 @@
+"use strict";
 // import './1.基础类型'
 // import './2.其他类型相关'
 // import './3.断言'
@@ -8,13 +9,9 @@
 // import './10.其他'
 // import './11.自定义类型'
 // import './12.命名空间'
-
-// import Home from '@/home/index'
-
-export {}
-
-const obj = {
-  name: 'wyb'
-}
-let name = 'name'
+exports.__esModule = true;
+var obj = {
+    name: 'wyb'
+};
+var name = 'name';
 console.log(obj[name]);
