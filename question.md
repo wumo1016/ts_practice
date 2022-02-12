@@ -1,3 +1,8 @@
 - 类型注解
 - 类型推断
 - any和unknow的区别
+  - 赋值
+    - any: any <=> 任何类型
+    - unknow: unknow <= 任何类型
+  - 取值
+    - any可以.任何属性 unkonw则不行
