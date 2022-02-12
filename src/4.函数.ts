@@ -21,10 +21,15 @@ interface sum3 {
 }
 
 // 可选参数 与 默认值不能一起使用
-// 剩余运算符
-function sum4(a: number, b?: number, ...args: any[]): number {
+// 可选参数
+function sum4(a: number, b?: number): number {
   // return a + b!
   return a + (b as number)
+}
+
+// rest参数
+function sum5(a: number, ...args: any[]): number {
+  return a
 }
 
 // 函数重载
@@ -33,26 +38,19 @@ function sum4(a: number, b?: number, ...args: any[]): number {
 // string => string[]
 
 // 重载方法必须写在真实方法上面
-function toArray(value:number): number[]
-function toArray(value:string): string[]
-function toArray(value: number | string){
-  if(typeof value === 'string'){
+function toArray(value: number): number[]
+function toArray(value: string): string[]
+function toArray(value: number | string) {
+  if (typeof value === 'string') {
     return value.split('')
   } else {
-    return value.toString().split('').map(v => Number(v))
+    return value
+      .toString()
+      .split('')
+      .map(v => Number(v))
   }
 }
 let r = toArray('123456')
 console.log(r)
 
-
-
-
-
-
-
-
-
-
-
-export { }
+export {}

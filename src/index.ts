@@ -10,7 +10,3 @@
 // import './12.命名空间'
 
 import Home from '@/home/index'
-
-
-const obj: unknown = { name: 'wyb' }
-obj.name
