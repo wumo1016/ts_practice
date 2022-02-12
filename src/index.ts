@@ -1,20 +1,12 @@
-// import './1.åŸºç¡€ç±»å‹'
-// import './2.å…¶ä»–ç±»å‹ç›¸å…³'
-// import './3.æ–­è¨€'
-// import './4.å‡½æ•°'
-// import './5.æ¥å£'
-// import './6.ç±»'
-// import './7.æ³›å‹'
-// import './10.å…¶ä»–'
-// import './11.è‡ªå®šä¹‰ç±»å‹'
-// import './12.å‘½åç©ºé—´'
+// import './1.»ù´¡ÀàĞÍ'
+// import './2.ÆäËûÀàĞÍÏà¹Ø'
+// import './3.¶ÏÑÔ'
+// import './4.º¯Êı'
+// import './5.½Ó¿Ú'
+// import './6.Àà'
+// import './7.·ºĞÍ'
+// import './10.ÆäËû'
+// import './11.×Ô¶¨ÒåÀàĞÍ'
+// import './12.ÃüÃû¿Õ¼ä'
 
 // import Home from '@/home/index'
-
-export {}
-
-const obj = {
-  name: 'wyb'
-}
-let name = 'name'
-console.log(obj[name]);

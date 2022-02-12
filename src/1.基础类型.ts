@@ -47,6 +47,14 @@ const enum DIRECTION2 { // 编译的时候 获取的直接值(普通是这样DIR
 }
 // console.log(DIRECTION2.UP);
 
+// 反向取值只适用于值是数字的枚举 因为数字枚举内部是双向映射
+/* 
+DIRECTION[DIRECTION["UP"] = 0] = "UP";
+DIRECTION[DIRECTION["DOWN"] = 1] = "DOWN";
+DIRECTION[DIRECTION["LEFT"] = 2] = "LEFT";
+DIRECTION[DIRECTION["RIGHT"] = 3] = "RIGHT";
+*/
+
 /* ---------- 其他类型 unknow any void null undefined never object symbol bigint -------------- */
 let unknow: unknown = 1
 

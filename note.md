@@ -1,5 +1,6 @@
 ## 环境搭建
 - `npm i typescript -g`
+- `npm i ts-node -g` 可直接运行ts文件
 - `tsc --init` 生产ts配置文件
 
 ## 优势
