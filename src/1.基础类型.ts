@@ -26,7 +26,7 @@ enum DIRECTION { // 大写是规范
   UP,
   DOWN,
   LEFT,
-  RIGHT,
+  RIGHT
 }
 // console.log(DIRECTION[0]); // 支持反举
 
@@ -38,7 +38,7 @@ enum DIRECTION1 { // 如果有个数字，下面会递增推断。如果是字�
   RIGHT
 }
 
-// 常量枚举 
+// 常量枚举
 const enum DIRECTION2 { // 编译的时候 获取的直接值(普通是这样DIRECTION.UP 而常量直接是它对应的值 0)
   UP,
   DOWN,
@@ -56,7 +56,7 @@ let unknow1: any = 1
 // 其他类型也都可以分配给unkonw 但是unkonw不能分配给其他类型
 
 // void只能赋值 null或undefined
-function unknow3(): void { }
+function unknow3(): void {}
 
 // null和undefined是任何类型的子类型（如果配置文件开启了 strict:true 则无效）
 let unknow4: null = null
@@ -68,7 +68,7 @@ function unknow6(): never {
   throw '123'
 }
 function unknow7(): never {
-  while (true) { }
+  while (true) {}
 }
 
 // {} [] function
@@ -80,9 +80,10 @@ let unknow10: bigint = BigInt(1)
 
 // BigInt相关
 const max = Number.MAX_SAFE_INTEGER
-console.log(max + 1 === max + 2); // true
-console.log(BigInt(max) + BigInt(1) === BigInt(max) + BigInt(2)); // false
-console.log(max);                      // 9007199254740991
-console.log(BigInt(max) + BigInt(1));  // 9007199254740992n
+console.log(max + 1 === max + 2) // true
+console.log(BigInt(max) + BigInt(1) === BigInt(max) + BigInt(2)) // false
+console.log(max) // 9007199254740991
+console.log(BigInt(max) + BigInt(1)) // 9007199254740992n
+console.log(BigInt(max) + 1n) // 简写 目标版本target需要大于等于2020
 
 export {}

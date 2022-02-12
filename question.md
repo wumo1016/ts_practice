@@ -1,8 +1,11 @@
-- 类型注解
-- 类型推断
-- any和unknow的区别
+- 1.类型注解
+- 2.类型推断
+- 3.any和unknow的区别
   - 赋值
     - any: any <=> 任何类型
     - unknow: unknow <= 任何类型
   - 取值
     - any可以.任何属性 unkonw则不行
+- 4.string和String的区别
+  - string和String在ts中的一个类型表现 并不能点出任何方法或属性
+  - 对于作为数据类型上表现一致
