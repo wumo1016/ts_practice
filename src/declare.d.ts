@@ -7,3 +7,5 @@ declare module 'jquery' {
 }
 
 declare type test123 = 'string'
+
+// type interface 可以不加declare 因为它们不是原生js语法 其他的不加则会报错
