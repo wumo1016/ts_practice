@@ -33,5 +33,6 @@
     }
     ```
   - esModuleInterop: 一些依赖为了兼容commonjs规范和amd等 所以使用exports=这个格式 将二者统一 开启这个选项 表示允许出现这种导出格式
+  - allowJs: 是否允许在ts中引入js文件
 - include: 编译哪些文件
 - exclude: 排除指定的目录或文件不编译
