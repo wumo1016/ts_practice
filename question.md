@@ -9,3 +9,6 @@
 - 4.string和String的区别
   - string和String在ts中的一个类型表现 并不能点出任何方法或属性
   - 对于作为数据类型上表现一致
+- 5.type和interface的区别
+  - 定义的范围不同 interface只能定义对象或函数 type可以定义任意类型
+  - interface有继承功能

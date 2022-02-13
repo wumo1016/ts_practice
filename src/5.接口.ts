@@ -50,9 +50,7 @@ interface mySchool extends school {
 
 const mySchool1: mySchool = {
   ...school1,
-  type: 'ceshi',
-  a: 1,
-  b: 2
+  type: 'ceshi'
 }
 
 // 接口断言
