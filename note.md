@@ -2,6 +2,7 @@
 - `npm i typescript -g`
 - `npm i ts-node -g` 可直接运行ts文件
 - `tsc --init` 生产ts配置文件
+- 使用paecel打包 `cnpm i parcle-bundler -S`
 
 ## 优势
 - 编译时类型检测
