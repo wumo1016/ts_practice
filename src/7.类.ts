@@ -1,23 +1,18 @@
 /* 修饰符
   public 修饰的属性或方法是公有地，默认
-  private 修饰的属性或方法是私有的 只能在自己中访问
-  protected 修饰的属性或方法是受保护的 只能在自己或子类中访问
+  private 修饰的属性或方法是私有的 只能在自己中访问 (不能实例化 也不能继承)
+  protected 修饰的属性或方法是受保护的 只能在自己或子类中访问 (能继承 但不能实例化)
   readonly 只读属性
+  static 静态属性和方法只能通过类访问 
 */
 
-/* 如果给类的构造函数添加修饰符
-  private 不能实例化 也不能继承
-  protected 能继承 但不能实例化
-*/
-
-// static 静态属性和方法只能通过类访问 
-
-// 类的定义
+/* ---------------------------- 类的定义 --------------------------------- */
 class Animal {
   name: string // 声明后会添加到this上 否则不能直接设置
   readonly age: number // 除了在constructor中 其他地方不能修改
   height!: number // 如果不需要初始化就这样 或者设置默认值
-  constructor(name: string, age: number) { // 也可以不提前声明 直接这样写 constructor(public name: string, public age: number)
+  constructor(name: string, age: number) {
+    // 也可以不提前声明 直接这样写 constructor(public name: string, public age: number)
     this.name = name
     this.age = age
   }
@@ -28,19 +23,19 @@ class Animal {
     this.run()
     console.log(`${this.name} is crying`)
   }
-  // static test = '123' // es7语法 Animal.test
-  static get test() { // es6 写法 功能一致
+  static test = '123' // es7语法 Animal.test
+  // es6 写法 功能一致
+  static get test1() {
     return 123
   }
 }
-
 const snake = new Animal('snake', 18)
 
-// snake.run()  属性“run”为私有属性，只能在类“Animal”中访问。
-// snake.cry()  属性“cry”受保护，只能在类“Animal”及其子类中访问。
-// snake.age = 20 无法分配到 "age" ，因为它是只读属性。
+// snake.run()  // 属性“run”为私有属性，只能在类“Animal”中访问。
+// snake.cry()  // 属性“cry”受保护，只能在类“Animal”及其子类中访问。
+// snake.age = 20 // 无法分配到 "age" ，因为它是只读属性。
 
-// 类的继承
+/* ---------------------------- 类的继承 --------------------------------- */
 class Dog extends Animal {
   bark() {
     // super.run()
@@ -56,27 +51,29 @@ duoduo.bark()
 // 装饰器函数时从下往上执行
 
 function add1(target: any) {
-  console.log(1);
-  target.prototype.eat = function () { // 需要在类上提前声明
-    console.log('eat');
+  console.log(1)
+  target.prototype.eat = function () {
+    // 需要在类上提前声明
+    console.log('eat')
   }
 }
 function add2(value: number) {
   return function (target: any) {
-    console.log(2);
+    console.log(2)
   }
 }
 
-function toUpper(target:any, key: string){ // 因为这个调这个方法的时候 属性还并未赋值
+function toUpper(target: any, key: string) {
+  // 因为这个调这个方法的时候 属性还并未赋值
   let value = ''
   Object.defineProperty(target, key, {
-    get(){
-      console.log('获取值');
+    get() {
+      console.log('获取值')
       return value.toUpperCase()
     },
-    set(newValue: string){
+    set(newValue: string) {
       value = newValue
-      console.log('设置值');
+      console.log('设置值')
     }
   })
 }
@@ -91,8 +88,7 @@ class Person {
 
 const p1 = new Person()
 p1.eat()
-console.log(p1.name);
-
+console.log(p1.name)
 
 // 类实现接口
 interface Radio {
@@ -103,26 +99,21 @@ interface Battery {
 }
 
 class Car implements Radio {
-  switchRadio(tigger: boolean) {
-
-  }
+  switchRadio(tigger: boolean) {}
 }
 // 一个类实现多个接口
 class Cellphone implements Radio, Battery {
-  switchRadio(tigger: boolean) {
-
-  }
-  checkBatteryStatus() {
-
-  }
+  switchRadio(tigger: boolean) {}
+  checkBatteryStatus() {}
 }
 
 // 抽象类 不能被实例化(new)
 abstract class Animal1 {
   abstract name: string // 没有具体实现 需要子类实现 且子类必须实现
-  eat(){ // 子类可以没有
-    console.log('eat');
+  eat() {
+    // 子类可以没有
+    console.log('eat')
   }
 }
 
-export { }
+export {}

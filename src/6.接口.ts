@@ -4,32 +4,28 @@
 
 // 描述对象
 interface school {
-  readonly name: string, // 只读
-  age: number, // 后面的逗号可以不写 也可以是分号等
-  address?: string, // ? 表示这个属性可选
+  readonly name: string // 只读
+  age: number // 后面的逗号可以不写 也可以是分号等
+  address?: string // ? 表示这个属性可选
 }
 
 const school1: school = {
   name: '小红',
-  age: 123,
+  age: 123
 }
 
 // 描述函数
 interface ICount {
   (): number
-  count: number // 函数的属性
+  speak(): number // 属性(函数)
+  count: number // 属性
 }
 
 const fn: ICount = () => {
   return fn.count++
 }
 fn.count = 11
-
-// 描述函数属性
-interface ICount1 {
-  speak(): number
-  count: number
-}
+fn.speak = () => 0
 
 // 接口合并 同名的接口会进行合并(已有不能覆盖 没有添加)
 interface IVegettables {
@@ -41,17 +37,20 @@ interface IVegettables {
   size: number
 }
 
+// 接口可扩展
+interface ImySchool {
+  type: string
+  [key: string]: any // 可以添加多个任意属性
+}
+
 // 接口可扩展 接口继承
 interface mySchool extends school {
-  type: string,
-  [key: string]: any // 可以添加多个任意属性
+  type: string
 }
 
 const mySchool1: mySchool = {
   ...school1,
-  type: 'ceshi',
-  a: 1,
-  b: 2,
+  type: 'ceshi'
 }
 
 // 接口断言

@@ -2,8 +2,11 @@
   "name": "ts_practice",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel ./public/index.html"
   },
   "author": "wumo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
 }
