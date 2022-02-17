@@ -116,4 +116,15 @@ abstract class Animal1 {
   }
 }
 
+/* ---------------------- 类方法重载 -------------------------  */
+;(function () {
+  class Parent {
+    say(key: number): number
+    say(key: string): string
+    say(key) {
+      return key
+    }
+  }
+})
+
 export {}
