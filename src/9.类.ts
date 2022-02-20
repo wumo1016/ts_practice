@@ -36,6 +36,10 @@ const snake = new Animal('snake', 18)
 // snake.age = 20 // 无法分配到 "age" ，因为它是只读属性。
 
 /* ---------------------------- 类的继承 --------------------------------- */
+// super的用法：
+// 1.在子类constructor中当作父类构造函数调用
+// 2.在子类方法中获取父类的属性和方法 (super.run() 相当于 _Animal.prototype.run)
+
 class Dog extends Animal {
   bark() {
     // super.run()
@@ -127,4 +131,4 @@ abstract class Animal1 {
   }
 })
 
-export {}
+export {  }
