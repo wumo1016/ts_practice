@@ -28,6 +28,7 @@ type IPerson1 = IName & { age: number }
 let person1: IPerson1 = { name: '123', age: 123 }
 
 /* ----------------------- type guard 类型守卫 --------------------------- */
+// 产生的时机： 1.typeof 2.in 3.instanceof 4. == === != !===
 function getLength1(data: string | number): number {
   if (typeof data === 'string') {
     return data.length
