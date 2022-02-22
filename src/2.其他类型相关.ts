@@ -17,7 +17,7 @@ type test3 = '1' | '2'
 let test4: test3
 
 /* ---------------------- type inference 类型推论 类型推断 ----------------------- */
-let a = 123 
+let a = 123
 
 /* -------------------------- 交叉类型 ------------------------------------ */
 //  如果两个属性的类型不一样 则会变成 never 类型
@@ -38,31 +38,48 @@ function getLength1(data: string | number): number {
 }
 
 class P1 {
-  eat1() {
-  }
+  eat1() {}
 }
 class P2 {
-  eat2() {
-  }
+  eat2() {}
 }
 function createClass(clazz: new () => P1 | P2) {
-  const r = new clazz
+  const r = new clazz()
   if (r instanceof P1) {
-    console.log(r.eat1);
+    console.log(r.eat1)
   } else {
-    console.log(r.eat2);
+    console.log(r.eat2)
   }
   return r
 }
 
+/* ----------------------- 自定义类型守卫 --------------------------- */
+;(function () {
+  // const isString = (str: any) => typeof str === 'string' // 输出时没有提示
+  const isString = (str: any): str is string => typeof str === 'string'
+  const obj = {
+    name: 'wyb',
+    getAge() {
+      return 18
+    }
+  }
+  Object.keys(obj).forEach(key => {
+    const value = obj[key]
+    if (isString(value)) {
+      console.log(value.length)
+    }
+  })
+})
+
 /* --------------------- is语法 -------------------------- */
 //  用来定义自己的类型
-function isString(val: any): val is string { // 判定就是字符串
+function isString(val: any): val is string {
+  // 判定就是字符串
   return Object.prototype.toString.call(val) === '[object String]'
 }
 let str = '1'
 if (isString(str)) {
-  console.log(str);
+  console.log(str)
 }
 
 /* ------------------------ 条件类型 ---------------------------- */
@@ -72,7 +89,7 @@ interface Fish {
 }
 interface Bird {
   name: string
-  type: "鸟"
+  type: '鸟'
 }
 interface Swiming {
   swiming: string
@@ -83,4 +100,4 @@ interface Sky {
 type MyType<T> = T extends Bird ? Sky : Swiming // 如果传入的是联合类型 就会进行条件的分发
 type IEnv = MyType<Bird>
 
-export { }
+export {}
