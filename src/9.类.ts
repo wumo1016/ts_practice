@@ -82,6 +82,7 @@ function toUpper(target: any, key: string) {
   })
 }
 
+/* ---------------------- 类装饰器 -------------------------  */
 @add1
 @add2(123)
 class Person {
@@ -94,7 +95,7 @@ const p1 = new Person()
 p1.eat()
 console.log(p1.name)
 
-// 类实现接口
+/* ---------------------- 类实现接口 -------------------------  */
 interface Radio {
   switchRadio(tigger: boolean): void
 }
@@ -111,15 +112,6 @@ class Cellphone implements Radio, Battery {
   checkBatteryStatus() {}
 }
 
-// 抽象类 不能被实例化(new)
-abstract class Animal1 {
-  abstract name: string // 没有具体实现 需要子类实现 且子类必须实现
-  eat() {
-    // 子类可以没有
-    console.log('eat')
-  }
-}
-
 /* ---------------------- 类方法重载 -------------------------  */
 ;(function () {
   class Parent {
@@ -131,4 +123,43 @@ abstract class Animal1 {
   }
 })
 
-export {  }
+/* ---------------------- 多态 -------------------------  */
+// 解释：父类的方法可以接受任何一个子类的对象 从而使用这个方法来调用子类中重写的方法而输出不同的姐夫哦
+// 产生条件：必须存在继承关系 必须有方法重写
+;(function () {
+  class Parent {
+    say(ins) {
+      return ins.say()
+    }
+  }
+  class Child1 extends Parent {
+    say() {
+      console.log('child1')
+    }
+  }
+  class Child2 extends Parent {
+    say() {
+      console.log('child2')
+    }
+  }
+  const parent = new Parent()
+  parent.say(new Child1())
+  parent.say(new Child2())
+})
+
+/* ---------------------- 抽象类 -------------------------  */
+// 特点：1.无法被实例化 只能通过子类实例化 2.相比普通类 它可以添加抽象方法 其他的都一样
+// 好处：1.类似定义接口一样 保持子类的的统一性 2.相比接口的好处是 接口的所有方法子类都必须实现 但抽象类只需要实现抽象方法(抽象类已经实现的则不需要子类实现)(适配器)
+;(function () {
+  abstract class Parent {
+    abstract eat(): void // 抽象方法: 没有方法体
+    move(): void {
+      throw new Error('Method move not implemented')
+    }
+  }
+
+  class Child extends Parent {
+    eat() {}
+  }
+})
+export {}
