@@ -56,7 +56,7 @@ function createClass(clazz: new () => P1 | P2) {
 /* ----------------------- 自定义类型守卫 --------------------------- */
 ;(function () {
   // const isString = (str: any) => typeof str === 'string' // 输出时没有提示
-  const isString = (str: any): str is string => typeof str === 'string'
+  const isString = (str: any): str is string => typeof str === 'string' // 当返回true的时候 str的类型就是string
   const obj = {
     name: 'wyb',
     getAge() {
