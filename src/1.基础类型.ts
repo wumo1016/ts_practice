@@ -13,8 +13,13 @@
 
 /* --------------------------------- unknow any --------------------------------- */
 ;(function () {
-  let unknow: unknown = 1 // 其他类型也都可以分配给unkonw 但是unkonw不能分配给其他类型
-  let test: any = 1 // any可以分配给其他类型 其他类型也都可以分配给any
+  // 其他类型也都可以分配给unkonw 但是unkonw不能分配给其他类型
+  // unknown 不能通过变量取值
+  // unknown 和其他类型联合类型都是 unknown
+  // unknown 和其他类型交叉类型都是其他类型v  v
+  let unknow: unknown = 1
+  // any可以分配给其他类型 其他类型也都可以分配给any
+  let test: any = 1
 })()
 
 /* --------------------------------- void null undefined never --------------------------------- */

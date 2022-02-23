@@ -1,4 +1,3 @@
-
 /* ----------------- 兼容性 -------------------- */
 // 普通类型
 type Mystr = { toString(): string } // 只要具有 toString 方法即可
@@ -26,12 +25,12 @@ let sum2 = (a: string): string => a
 sum1 = sum2
 // 函数 返回值兼容性(多的可以赋给少的)
 type sum3 = (a: string, b: string) => { name: string }
-type sum4 = (a: string) => { name: string, age: number }
+type sum4 = (a: string) => { name: string; age: number }
 let s3!: sum3
 let s4!: sum4
 s3 = s4
 
-// 参数是逆变可以传父类 函数的返回值是协变可以传子类
+// 参数是逆变可以传父类 函数的返回值是协变 可以传子类
 
 class Parent {
   money!: string
@@ -45,22 +44,26 @@ class Grandson extends Child {
   eat!: string
 }
 
-function getFn(cb: (person: Child) => Child){
+function getFn(cb: (person: Child) => Child) {}
 
-}
+getFn((person: Parent) => new Child())
+getFn((person: Parent) => new Grandson())
 
-getFn((person: Parent) => new Child)
-getFn((person: Parent) => new Grandson)
+/* --------------------------------- const --------------------------------- */
+;(function () {
+  const list = [1, 2, 3] as const
+  // list[0] = 0 // 无法分配到 "0" ，因为它是只读属性
+})()
 
-
-// unknown 是any的安全类型
-let u: any
-u.xx()
-
-// unknown 不能通过变量取值
-// unknown 和其他类型联合类型都是 unknown
-// unknown 和其他类型交叉类型都是其他类型v  v
-let u1: unknown 
-u1.xx()
+/* --------------------------------- readonly --------------------------------- */
+;(function () {
+  // 只能对数组和元组使用
+  // 1.数组
+  const list: readonly number[] = [1, 2, 3]
+  // list[0] = 0 // 类型“readonly number[]”中的索引签名仅允许读取
+  // 2.元组
+  const list1: readonly [number, string] = [1, '2']
+  // list1.push(3) // 类型“readonly [number, string]”上不存在属性“push”
+})()
 
 export {}
