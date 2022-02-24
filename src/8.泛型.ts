@@ -29,7 +29,7 @@
   echo(123)
 })
 
-/* --------------------------------- 约束泛型 --------------------------------- */
+/* --------------------------------- 约束泛型 extends --------------------------------- */
 ;(function () {
   // 示例1：只能传入一个有length属性的参数
   interface IWithLength {
@@ -39,13 +39,12 @@
     console.log(arg.length)
     return arg
   }
-  // 示例2：keyof K就是必须是T中的key
-  const getValue = <T extends object, K extends keyof T>(obj: T, key: K) => {}
-  getValue({ a: 1, b: 2 }, 'a')
-
-  type T1 = keyof { a: 1; b: 2 }
-  type T2 = keyof string // string的所有属性
-  type T3 = keyof any // string | number | symbol
+  // 示例2：keyof K就是必须是T中的key T[K]就是返回值的类型
+  const getValue = <T extends object, K extends keyof T>(
+    obj: T,
+    key: K
+  ): T[K] => obj[key]
+  getValue({ a: 1, b: '2' }, 'a')
 })
 
 /* --------------------------------- 泛型类 --------------------------------- */

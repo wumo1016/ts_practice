@@ -66,4 +66,19 @@ getFn((person: Parent) => new Grandson())
   // list1.push(3) // 类型“readonly [number, string]”上不存在属性“push”
 })()
 
+/* --------------------------------- keyof --------------------------------- */
+;(function () {
+  // 获取一个类或对象或一个而接口类型中的所有属性的联合类型
+  class Test {
+    name!: string
+    say() {}
+  }
+  type T0 = keyof Test // 虽然不显示 但是在用的时候会检查 ? 静态属性如何获取
+  // let t: T0 = 'say1' // 类型“"say1"”不可分配给类型“keyof Test”
+
+  type T1 = keyof { a: 1; b: 2 } // "a" | "b"
+  type T2 = keyof string // string的所有属性
+  type T3 = keyof any // string | number | symbol
+})()
+
 export {}
