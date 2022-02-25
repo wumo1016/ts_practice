@@ -2,7 +2,7 @@
 1.可以时A-Z任意一个字母 也可以是一个语义化的单词
 */
 
-/* --------------------------------- 泛型定义 --------------------------------- */
+/* --------------------------------- 泛型函数 --------------------------------- */
 ;(function () {
   // 示例1
   function echo<T>(a: T): T {
@@ -19,32 +19,17 @@
   console.log(swap([1, '2']))
 })
 
-/* --------------------------------- 泛型默认值 --------------------------------- */
+/* --------------------------------- 泛型接口 --------------------------------- */
 ;(function () {
-  // 示例1
-  function echo<T = string>(a): T {
-    return a
-  }
-  echo<number>(123)
-  echo(123)
-})
-
-/* --------------------------------- 约束泛型 extends --------------------------------- */
-;(function () {
-  // 示例1：只能传入一个有length属性的参数
-  interface IWithLength {
-    length: number
-  }
-  function echoWithArr<T extends IWithLength>(arg: T): T {
-    console.log(arg.length)
-    return arg
-  }
-  // 示例2：keyof K就是必须是T中的key T[K]就是返回值的类型
-  const getValue = <T extends object, K extends keyof T>(
-    obj: T,
+  interface KeyPair<K, V = number> {
     key: K
-  ): T[K] => obj[key]
-  getValue({ a: 1, b: '2' }, 'a')
+    value: V
+  }
+
+  let kp1: KeyPair<string> = {
+    key: '123',
+    value: 123
+  }
 })
 
 /* --------------------------------- 泛型类 --------------------------------- */
@@ -74,15 +59,30 @@
   const ins1 = createInstance<My>(My)
 })
 
-/* --------------------------------- 泛型接口 --------------------------------- */
+/* --------------------------------- 泛型默认值 --------------------------------- */
 ;(function () {
-  interface KeyPair<K, V = number> {
-    key: K
-    value: V
+  // 示例1
+  function echo<T = string>(a): T {
+    return a
   }
+  echo<number>(123)
+  echo(123)
+})
 
-  let kp1: KeyPair<string> = {
-    key: '123',
-    value: 123
+/* --------------------------------- 约束泛型 extends --------------------------------- */
+;(function () {
+  // 示例1：只能传入一个有length属性的参数
+  interface IWithLength {
+    length: number
   }
+  function echoWithArr<T extends IWithLength>(arg: T): T {
+    console.log(arg.length)
+    return arg
+  }
+  // 示例2：keyof K就是必须是T中的key T[K]就是返回值的类型
+  const getValue = <T extends object, K extends keyof T>(
+    obj: T,
+    key: K
+  ): T[K] => obj[key]
+  getValue({ a: 1, b: '2' }, 'a')
 })
