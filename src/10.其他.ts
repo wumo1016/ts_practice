@@ -56,8 +56,11 @@ getFn((person: Parent) => new Grandson())
 })()
 
 /* --------------------------------- readonly --------------------------------- */
+/* 
+定义：只能对数组和元组使用
+*/
 ;(function () {
-  // 只能对数组和元组使用
+  //
   // 1.数组
   const list: readonly number[] = [1, 2, 3]
   // list[0] = 0 // 类型“readonly number[]”中的索引签名仅允许读取
@@ -67,8 +70,10 @@ getFn((person: Parent) => new Grandson())
 })()
 
 /* --------------------------------- keyof --------------------------------- */
+/* 
+定义：获取一个类或对象或一个而接口类型中的所有属性的联合类型
+*/
 ;(function () {
-  // 获取一个类或对象或一个而接口类型中的所有属性的联合类型
   class Test {
     name!: string
     say() {}
@@ -79,6 +84,32 @@ getFn((person: Parent) => new Grandson())
   type T1 = keyof { a: 1; b: 2 } // "a" | "b"
   type T2 = keyof string // string的所有属性
   type T3 = keyof any // string | number | symbol
+})()
+
+/* --------------------------------- infer --------------------------------- */
+/*
+1.定义：只能在extends语句中使用 后面跟一个泛型 表示声明一个类型
+2.出现的位置
+  - 1.函数的参数类型位置上
+  - 2.函数的返回值类型位置上
+  - 3.泛型具体化类型上
+*/
+;(function () {
+  // 示例1：表达式成立就会返回参数类型 否则就会返回传入的类型
+  type T1 = (name: string) => string
+  type inferType1<T> = T extends (params: infer P) => any ? P : T // type r1 = string
+  // type inferType<T> = T extends (params: infer P) => number ? P : T // ype r1 = (name: string) => string
+  type r1 = inferType1<T1>
+
+  // 示例2：表达式成立就会返回参数类型 否则就会返回传入的类型
+  type T2 = (name: string) => string
+  type inferType2<T> = T extends (params: any) => infer P ? P : T
+  type r2 = inferType2<T2>
+
+  // 示例3：
+  type T3<T> = T extends Set<infer P> ? P : T
+  type r3 = T3<Set<string>>
+  // type r3 = T3<number>
 })()
 
 export {}
