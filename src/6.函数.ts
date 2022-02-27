@@ -58,4 +58,15 @@ function sum5(a: number, ...args: any[]): number {
   console.log(r2)
 })
 
+/* ---------------------- 构造函数 -------------------------  */
+;(function () {
+  // 构造函数类型
+  type TypeConstructor = new (...arg) => any
+
+  const func = () => {}
+  class test {}
+  // let t: TypeConstructor = func
+  let t: TypeConstructor = test
+})
+
 export {}

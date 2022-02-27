@@ -50,10 +50,6 @@ class Dog extends Animal {
 const duoduo = new Dog('duoduo', 20)
 duoduo.bark()
 
-// 装饰器(类装饰器 属性装饰器(包括静态属性) 参数装饰器)
-// 作用就是扩展类中的属性和方法
-// 装饰器函数时从下往上执行
-
 function add1(target: any) {
   console.log(1)
   target.prototype.eat = function () {
@@ -83,17 +79,23 @@ function toUpper(target: any, key: string) {
 }
 
 /* ---------------------- 类装饰器 -------------------------  */
-@add1
-@add2(123)
-class Person {
-  eat!: () => void
-  @toUpper
-  public name: string = 'wyb'
-}
+// 装饰器(类装饰器 属性装饰器(包括静态属性) 参数装饰器)
+// 作用就是扩展类中的属性和方法
+// 装饰器函数时从下往上执行
 
-const p1 = new Person()
-p1.eat()
-console.log(p1.name)
+;(function () {
+  @add1
+  @add2(123)
+  class Person {
+    eat!: () => void
+    @toUpper
+    public name: string = 'wyb'
+  }
+
+  const p1 = new Person()
+  p1.eat()
+  console.log(p1.name)
+})
 
 /* ---------------------- 类实现接口 -------------------------  */
 interface Radio {
