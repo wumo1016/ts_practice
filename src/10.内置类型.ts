@@ -22,20 +22,7 @@
     name: string
     age: number
   }
-  type IIPerson = Partial<IPerson>
-})
-
-/* ---------------------- Omit -------------------------  */
-/* 
-定义: 删除指定的属性
-*/
-;(function () {
-  // 示例1
-  interface IPerson {
-    name: string
-    age: number
-  }
-  type IIPerson = Omit<IPerson, 'name'>
+  type P1 = Partial<IPerson>
 })
 
 /* ---------------------- Required -------------------------  */
@@ -64,6 +51,19 @@
   type IIPerson = Readonly<IPerson>
 })
 
+/* ---------------------- Omit -------------------------  */
+/* 
+定义: 删除指定的属性
+*/
+;(function () {
+  // 示例1
+  interface IPerson {
+    name: string
+    age: number
+  }
+  type IIPerson = Omit<IPerson, 'name'>
+})
+
 /* ---------------------- Exclude -------------------------  */
 /* 
 定义: 排除指定属性
@@ -72,26 +72,47 @@
   type MyExclude = Exclude<string | number | boolean, boolean> //
 })()
 
-/* ReturnType 获取返回的返回值类型 */
-function getSchool(name: string, age: number) {
-  return {
-    name: 'wyb',
-    age: 18
+/* ---------------------- ReturnType -------------------------  */
+/* 
+定义: 获取返回的返回值类型
+*/
+;(function () {
+  function getSchool(name: string, age: number) {
+    return {
+      name: 'wyb',
+      age: 18
+    }
   }
-}
-// let s = getSchool()
-// type MyType = typeof s
-type MyType = ReturnType<typeof getSchool>
+  // let s = getSchool()
+  // type MyType = typeof s
+  type MyType = ReturnType<typeof getSchool>
+})()
 
-/* Parameters 获取所有参数类型 */
-type MyP = Parameters<typeof getSchool>
+/* ---------------------- Parameters -------------------------  */
+/* 
+定义: 获取所有参数类型
+*/
+;(function () {
+  function getSchool(name: string, age: number) {
+    return {
+      name: 'wyb',
+      age: 18
+    }
+  }
+  type MyP = Parameters<typeof getSchool>
+})()
 
-/* Pick 包含有指定类型中的指定属性 */
-interface IPerson2 {
-  name: string
-  age: number
-}
-type Mypick = Pick<IPerson2, 'name' | 'age'>
+/* ---------------------- Pick -------------------------  */
+/* 
+定义: 包含有指定类型中的指定属性
+*/
+;(function () {
+  interface IPerson2 {
+    name: string
+    age: number
+  }
+  type Mypick = Pick<IPerson2, 'name' | 'age'>
+})()
 
 /* ---------------------- Extract -------------------------  */
 /* 
@@ -117,3 +138,15 @@ type Mypick = Pick<IPerson2, 'name' | 'age'>
   type func2 = (name: string) => string
   type E3 = Extract<func2, func1> // func2
 })
+
+/* ---------------------- Record -------------------------  */
+/* 
+定义: 构建一个键值对都被约束为指定类型的类型
+*/
+;(function () {
+  interface Person {
+    name: string
+    age: number
+  }
+  type R1 = Record<string, Person>
+})()
