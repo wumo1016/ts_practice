@@ -106,3 +106,27 @@ let merge1: MyMerge1 = {
   b: 0,
   age: 'abc'
 }
+
+/* ---------------------- 将指定类型所有属性变成可选(无限层) -------------------------  */
+
+;(function () {
+  type MyPartial<T> = {
+    // 自定义无限层可选
+    [K in keyof T]?: T[K] extends object ? MyPartial<T[K]> : T[K]
+  }
+  interface IObject {
+    width: number
+    height: number
+  }
+  interface IPerson {
+    name: string
+    age: number
+    obj: IObject
+  }
+  type IIPerson = MyPartial<IPerson>
+  // type IIPerson = Partial<IPerson>
+
+  const test: IIPerson = {
+    obj: {}
+  }
+})

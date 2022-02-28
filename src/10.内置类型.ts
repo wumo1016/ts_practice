@@ -1,53 +1,75 @@
-// global objects
-const n1: Array<number> = [1, 2, 2]
-const n2 = new Date()
-const n3 = /abc/
+/* ---------------------- global objects -------------------------  */
+;(function () {
+  // global objects
+  const n1 = new Date() // Date
+  const n2 = /abc/ // RegExp
 
-// build-in object
-Math.random()
+  // build-in object
+  const n3 = Math // Math
 
-// DOM and BOM
-const n4 = document.body
+  // DOM and BOM
+  const n4 = document.body // HTMLElement
+  const n5 = navigator // Navigator
+})
 
-// Utility Types
-/* Partial 将所有参数变成可选类型 单层可选 */
-interface IPerson {
-  name: string
-  age: number
-}
-type Partial1<T> = {
-  // 自定义无限层可选
-  [K in keyof T]?: T[K] extends object ? Partial1<T[K]> : T[K]
-}
-type IIPerson = Partial<IPerson>
-let n6: IIPerson = {
-  name: 'wyb'
-}
-/* Omit 将指定的属性删除 其他的不变 */
-type IOmit = Omit<IPerson, 'name'>
-let n7: IOmit = {
-  age: 123
-}
+/* ---------------------- Partial -------------------------  */
+/* 
+定义: 将所有参数变成可选类型 单层可选
+*/
+;(function () {
+  // 示例1
+  interface IPerson {
+    name: string
+    age: number
+  }
+  type IIPerson = Partial<IPerson>
+})
 
-/* Required 将所有属性变成必填的 */
-interface IPerson1 {
-  name?: string
-  age: number
-}
-type IIPerson1 = Required<IPerson1>
-let n8: IIPerson1 = {
-  name: 'wyb',
-  age: 123
-}
+/* ---------------------- Omit -------------------------  */
+/* 
+定义: 删除指定的属性
+*/
+;(function () {
+  // 示例1
+  interface IPerson {
+    name: string
+    age: number
+  }
+  type IIPerson = Omit<IPerson, 'name'>
+})
 
-/* Readonly 将所有属性变成只读的 */
+/* ---------------------- Required -------------------------  */
+/* 
+定义: 将所有属性变成必填的
+*/
+;(function () {
+  // 示例1
+  interface IPerson {
+    name?: string
+    age: number
+  }
+  type IIPerson = Required<IPerson>
+})
+
+/* ---------------------- Readonly -------------------------  */
+/* 
+定义: 将所有属性变成只读的
+*/
+;(function () {
+  // 示例1
+  interface IPerson {
+    name: string
+    age: number
+  }
+  type IIPerson = Readonly<IPerson>
+})
 
 /* ---------------------- Exclude -------------------------  */
 /* 
 定义: 排除指定属性
 */
 ;(function () {
-  type MyExclude = Exclude<string | number | boolean, boolean> // 
+  type MyExclude = Exclude<string | number | boolean, boolean> //
 })()
 
 /* ReturnType 获取返回的返回值类型 */
