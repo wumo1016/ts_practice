@@ -113,4 +113,22 @@
 
   const test = new Test()
   test.say('---wyb---')
+})
+
+/* --------------------------------- 属性装饰器 --------------------------------- */
+;(function () {
+  /**
+   * @Author: wyb
+   * @Descripttion:  
+   * @param {*} proto Test.prototype
+   * @param {*} key 属性名
+   */
+  function D1(proto: any, key: string | symbol) {
+    console.log(proto, key)
+  }
+
+  class Test {
+    @D1
+    name: string = 'wyb'
+  }
 })()
