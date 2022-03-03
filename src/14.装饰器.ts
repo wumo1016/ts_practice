@@ -175,10 +175,28 @@ import 'reflect-metadata'
 })
 
 /* --------------------------------- 元数据 --------------------------------- */
+/* 
+- Reflect.defineMetadata 定义元数据
+  - 4个参数：key value target targetKey
+  - 3个参数：key value target
+  - 2个参数：直接在类、属性、方法上定义元数据(示例Test2)
+- Reflect.getMetadata 获取元数据
+  - 3个参数：key target targetKey
+  - 2个参数：key target
+- Reflect.hasMetadata 是否存在数据
+  - 3个参数：key target targetKey
+  - 2个参数：key target
+- Reflect.hasOwnMetadata 只获取自己类上定义的元数据(无法获取来自继承的)
+- Reflect.getMetadataKeys 获取指定对象的所有元数据key(包括内置的元数据key)
+- 三个内置元数据key
+  - design:type
+  - design:paramtypes
+  - design:returntype
+*/
 ;(function () {
   function D1(proto: any, key: string | symbol) {
     // 获取对应key的类型
-    const PropClass = Reflect.getMetadata('design:type', proto, key) // design:type 是内置元数据
+    const PropClass = Reflect.getMetadata('design:type', proto, key)
     console.log(PropClass) // [Function: String]
   }
   function D2(proto, key, descriptor) {
@@ -196,4 +214,16 @@ import 'reflect-metadata'
     @D2
     say() {}
   }
-})
+  /* ------------------------------ */
+  @Reflect.metadata('key_test2', '哈哈哈')
+  class Test2 {
+    @Reflect.metadata('key_user', '哈哈哈')
+    username = 'wyb'
+
+    @Reflect.metadata('key_say', '哈哈哈')
+    say() {}
+  }
+  console.log(Reflect.getMetadata('key_test2', Test2)) // 哈哈哈
+  console.log(Reflect.getMetadata('key_user', Test2.prototype, 'username')) // 哈哈哈
+  console.log(Reflect.getMetadata('key_say', Test2.prototype, 'say')) // 哈哈哈
+})()
