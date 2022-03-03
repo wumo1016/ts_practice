@@ -1,5 +1,8 @@
+import 'reflect-metadata'
+
 /* 
-- 1.多个装饰器时会倒着执行
+- 1.同一类执行顺序：多个装饰器时会倒着执行
+- 2.不同类执行顺序：属性装饰器 => (参数装饰器 => 方法装饰器)(对应的参数装饰器执行完紧接着执行对应的方法装饰器) => 构造器参数装饰器 => 类装饰器
 */
 
 /* --------------------------------- 类装饰器不带参数 --------------------------------- */
@@ -115,11 +118,49 @@
   test.say('---wyb---')
 })
 
+/* --------------------------------- 普通参数装饰器 --------------------------------- */
+;(function () {
+  /**
+   * @Author: wyb
+   * @Descripttion:
+   * @param {*} proto Test.prototype
+   * @param {*} key 参数名
+   * @param {*} position 参数的位置
+   */
+  function D1(proto: any, key: string, position) {
+    console.log(proto, key, position) // {} say 1
+  }
+
+  class Test {
+    say(age: number, @D1 name: string) {}
+  }
+})
+
+/* --------------------------------- 构造器参数装饰器 --------------------------------- */
+;(function () {
+  /**
+   * @Author: wyb
+   * @Descripttion:
+   * @param {*} targetClass Test
+   * @param {*} key
+   * @param {*} position 参数的位置
+   */
+  function D1(targetClass: any, key: string, position) {
+    console.log(targetClass, key, position) // {} undefined 1
+    const paramsTypes = Reflect.getMetadata('design:paramtypes', targetClass) // 所有构造器参数类型组成的数组
+    console.log(paramsTypes) // [ [Function: String], [Function: Number] ]
+  }
+
+  class Test {
+    constructor(@D1 name: string, age: number) {}
+  }
+})
+
 /* --------------------------------- 属性装饰器 --------------------------------- */
 ;(function () {
   /**
    * @Author: wyb
-   * @Descripttion:  
+   * @Descripttion:
    * @param {*} proto Test.prototype
    * @param {*} key 属性名
    */
@@ -131,4 +172,28 @@
     @D1
     name: string = 'wyb'
   }
-})()
+})
+
+/* --------------------------------- 元数据 --------------------------------- */
+;(function () {
+  function D1(proto: any, key: string | symbol) {
+    // 获取对应key的类型
+    const PropClass = Reflect.getMetadata('design:type', proto, key) // design:type 是内置元数据
+    console.log(PropClass) // [Function: String]
+  }
+  function D2(proto, key, descriptor) {
+    Reflect.defineMetadata('path', 'wyb', proto, key) // 定义元数据(因为执行顺序 所以在方法装饰器中定义 可以在类装饰器上拿到)
+  }
+  function D3(targetClass) {
+    console.log(Reflect.getMetadata('path', targetClass.prototype, 'say')) // 获取元数据
+  }
+
+  @D3
+  class Test {
+    @D1
+    name: string = 'wyb'
+
+    @D2
+    say() {}
+  }
+})
