@@ -23,8 +23,8 @@
   - 可以分配给其他类型 其他类型也都可以分配给any
 */
 ;(function () {
-  let unknow: unknown = 1
-  let test: any = 1
+  let value1: unknown = 1
+  let value2: any = 1
 })
 
 /* --------------------------------- void null undefined never --------------------------------- */
@@ -32,8 +32,8 @@
 - null和undefined是任何类型的子类型（如果配置文件开启了 strict:true 则无效）
 */
 ;(function () {
-  let test1: number = null
-  let test2: string = undefined
+  let num: number = null
+  let str: string = undefined
 })
 
 /* --------------------------------- never --------------------------------- */
@@ -52,9 +52,9 @@
 
 /* --------------------------------- object(object/array/function) --------------------------------- */
 ;(function () {
-  let test1: object = {}
-  let test2: object = []
-  let test3: object = function () {}
+  let value1: object = {}
+  let value2: object = []
+  let value3: object = function () {}
 })
 
 /* --------------------------------- symbol bigint --------------------------------- */
@@ -72,6 +72,6 @@
 
 /* --------------------------------- 数组 --------------------------------- */
 ;(function () {
-  let test1: number[] = [1, 2, 3]
-  let test2: Array<number> = [1, 2, 3]
+  let value1: number[] = [1, 2, 3]
+  let value2: Array<number> = [1, 2, 3]
 })
