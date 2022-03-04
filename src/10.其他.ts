@@ -112,4 +112,10 @@ getFn((person: Parent) => new Grandson())
   // type r3 = T3<number>
 })()
 
+/* --------------------------------- typeof --------------------------------- */
+;(function () {
+  const age: number = 13
+  type P = typeof age // number 获取类型
+})()
+
 export {}
