@@ -72,7 +72,7 @@ function createClass(clazz: new () => P1 | P2) {
 })
 
 /* --------------------- is语法 -------------------------- */
-//  用来定义自己的类型
+//  自定义类型保护类型 如果结果是true的话 返回什么类型
 function isString(val: any): val is string {
   // 判定就是字符串
   return Object.prototype.toString.call(val) === '[object String]'

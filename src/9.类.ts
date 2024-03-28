@@ -164,4 +164,16 @@ class Cellphone implements Radio, Battery {
     eat() {}
   }
 })
+
+/* ---------------------- 类参数 -------------------------  */
+;(function () {
+  class A {}
+
+  class B {}
+
+  function getInstance(clazz: new () => A | B) {
+    return new clazz()
+  }
+})
+
 export {}
