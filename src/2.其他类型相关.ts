@@ -107,8 +107,7 @@
   }
 })
 
-/* --------------------------------- 条件类型 --------------------------------- */ {
-}
+/* --------------------------------- 条件类型 --------------------------------- */
 ;(function () {
   interface Bird {
     name: string
@@ -127,6 +126,63 @@
   type MyType<T> = T extends Bird ? Sky : Swiming
   type T1 = MyType<Bird>
   type T2 = MyType<Fish>
+})
+
+/* --------------------------------- 模板字符串类型 --------------------------------- */
+;(function () {
+  // 组装
+  type name = 'jiangwen'
+  type age = 30
+  type sayName = `handsome, ${name} ${age}`
+
+  // 分发
+  type Direction = 'top' | 'bottom' | 'right' | 'left'
+  type AllMargin = `margin-${Direction}`
+  type AllPadding = `padding-${Direction}`
+
+  // 分发组装
+  type IR = '1.0' | '2.0' | '3.0'
+  type IL = 20 | 30 | 40
+  type IRL = `${IR}-${IL}`
+
+  // 泛型分发
+  type sayHello<
+    T extends string | boolean | null | undefined | number | bigint
+  > = `hello , ${T}`
+  // type sayHello<T> = `hello , ${T & string}`; // 有的时候可以偷懒，直接采用此方案来解析
+  type R1 = sayHello<'jiang'>
+  type R2 = sayHello<30> // 以上都是字面量
+  type R3 = sayHello<number> // 可以传递基础类型
+
+  // 字符串可以支持工具类型 Uppercase、LowerCase、 Capitalize、 UnCapitalize
+  type Person = {
+    name: string
+    age: number
+    address: string
+  }
+  let person: Person = { name: 'jw', age: 30, address: '北京' }
+  type WithGetter<T> = {
+    [K in keyof T as `get${Capitalize<K & string>}`]?: () => T[K]
+  }
+
+  type Compute<T> = { [K in keyof T]: T[K] }
+  type WithGetterType = Compute<WithGetter<Person>>
+  let personGetter: WithGetterType = {
+    getName() {
+      return person.name
+    },
+    getAge() {
+      return person.age
+    },
+    getAddress() {
+      return person.address
+    }
+  }
+
+  // infer 可以进行位置推断
+  // 可以推断数组 | 元组 | string
+  type GetNameFirstChar<T> = T extends `${infer F} ${infer X}` ? F : never
+  type FirstChar = GetNameFirstChar<'jiang wen'> // 可以通过infer 来进行字符串的位置推断，符合即可推断（中间可以配置分隔符）
 })
 
 export {}
