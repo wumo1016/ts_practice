@@ -49,7 +49,7 @@ function getFn(cb: (person: Child) => Child) {}
 getFn((person: Parent) => new Child())
 getFn((person: Parent) => new Grandson())
 
-/* --------------------------------- const --------------------------------- */
+/* --------------------------------- as const --------------------------------- */
 ;(function () {
   const list = [1, 2, 3] as const
   // list[0] = 0 // 无法分配到 "0" ，因为它是只读属性
@@ -67,7 +67,7 @@ getFn((person: Parent) => new Grandson())
   // 2.元组
   const list1: readonly [number, string] = [1, '2']
   // list1.push(3) // 类型“readonly [number, string]”上不存在属性“push”
-})()
+})
 
 /* --------------------------------- keyof --------------------------------- */
 /* 
@@ -84,7 +84,7 @@ getFn((person: Parent) => new Grandson())
   type T1 = keyof { a: 1; b: 2 } // "a" | "b"
   type T2 = keyof string // string的所有属性
   type T3 = keyof any // string | number | symbol
-})()
+})
 
 /* --------------------------------- infer --------------------------------- */
 /*
@@ -110,12 +110,19 @@ getFn((person: Parent) => new Grandson())
   type T3<T> = T extends Set<infer P> ? P : T
   type r3 = T3<Set<string>>
   // type r3 = T3<number>
-})()
+})
 
 /* --------------------------------- typeof --------------------------------- */
 ;(function () {
   const age: number = 13
   type P = typeof age // number 获取类型
-})()
+})
+
+/* --------------------------------- 三斜线指令 --------------------------------- */
+/* 
+- 类似于在声明文件中引入其他声明文件(只能放在最上面)
+  - 例如: /// <reference types="vite/client" />
+*/
+;(function () {})
 
 export {}
