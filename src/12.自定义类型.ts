@@ -80,10 +80,6 @@ type Person2 = {
   b: number
 }
 
-type Computed<T> = {
-  // 展开类型 方便提示
-  [K in keyof T]: T[K]
-}
 // 方法1
 type Merge<T extends object, K extends object> = Diff<T, K> &
   Diff<K, T> &

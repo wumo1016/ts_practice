@@ -24,11 +24,4 @@ const dog = new Home.Dog()
 // import x = require("xxxx")
 // 使用时可以采用es模块的方式导入
 
-// 如果想给全局的接口新增功能 使用global
-declare global {
-  interface String {
-    double(): string
-  }
-}
-
 export {}
