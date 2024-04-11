@@ -45,27 +45,48 @@ function unProxyfy<T extends object>(obj: Proxify<T>): T {
 let data2 = unProxyfy(proxyDatas)
 console.log(data2.name)
 
-/* ---------------- 差集 --------------------- */
-let person1 = {
-  name: 'zf',
-  age: 12,
-  address: '回龙观'
-}
-
-let person2: {
-  age: 12
-  address: '回龙观'
-}
-
-type Diff<T extends object, K extends object> = Omit<T, keyof K>
-type MyDiff = Diff<typeof person1, typeof person2>
-
 /* ---------------- 交集 ------------------------ */
-type Inter<T extends object, K extends object> = Pick<
-  K,
-  Extract<keyof T, keyof K>
->
-type MyInter = Inter<typeof person1, typeof person2>
+;(function () {
+  type A = {
+    name: string
+    age: number
+    address: number
+  }
+  type B = {
+    name: number
+    male: boolean
+    address: boolean
+  }
+  type Inter<T extends object, K extends object> = Pick<
+    K,
+    Extract<keyof T, keyof K>
+  >
+  type MyInter = Inter<A, B>
+})
+
+/* ---------------- 差集&补集 --------------------- */
+;(function () {
+  type A = {
+    name: string
+    age: number
+    address: number
+  }
+  type B = {
+    name: number
+    male: boolean
+    address: boolean
+  }
+  type Diff<T extends object, K extends object> = Pick<
+    T,
+    Exclude<keyof T, keyof K>
+  >
+  // type Diff<T extends object, K extends object> = Omit<T, keyof K>
+
+  // A比B少的叫差集
+  type MyDiff = Diff<A, B>
+  // B比A少的叫补集
+  type MyObjectCom = Diff<B, A>
+})
 
 /* ---------------- 并集 重复的后面覆盖前面的 --------------------- */
 type Person1 = {
