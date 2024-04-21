@@ -176,4 +176,11 @@ class Cellphone implements Radio, Battery {
   }
 })
 
+/* ---------------------- 获取类的实例类型 -------------------------  */
+;(function () {
+  class A {}
+
+  type B = typeof A.prototype
+})
+
 export {}
