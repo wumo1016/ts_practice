@@ -110,6 +110,16 @@ getFn((person: Parent) => new Grandson())
   type T3<T> = T extends Set<infer P> ? P : T
   type r3 = T3<Set<string>>
   // type r3 = T3<number>
+
+  // 示例4:
+  function test(a: number, b: number, c: number) {}
+
+  function test1(
+    a: number,
+    ...args: Parameters<typeof test> extends [any, ...infer R] ? R : never
+  ) {
+    test(a, ...args)
+  }
 })
 
 /* --------------------------------- typeof --------------------------------- */
