@@ -44,95 +44,107 @@ class Grandson extends Child {
   eat!: string
 }
 
-function getFn(cb: (person: Child) => Child) {}
+function getFn(cb: (person: Child) => Child) { }
 
 getFn((person: Parent) => new Child())
 getFn((person: Parent) => new Grandson())
 
-/* --------------------------------- as const --------------------------------- */
-;(function () {
-  const list = [1, 2, 3] as const
-  // list[0] = 0 // 无法分配到 "0" ，因为它是只读属性
-})()
+  /* --------------------------------- as const --------------------------------- */
+  ; (function () {
+    const list = [1, 2, 3] as const
+    // list[0] = 0 // 无法分配到 "0" ，因为它是只读属性
+  })()
 
-/* --------------------------------- readonly --------------------------------- */
-/* 
-定义：只能对数组和元组使用
-*/
-;(function () {
-  //
-  // 1.数组
-  const list: readonly number[] = [1, 2, 3]
-  // list[0] = 0 // 类型“readonly number[]”中的索引签名仅允许读取
-  // 2.元组
-  const list1: readonly [number, string] = [1, '2']
-  // list1.push(3) // 类型“readonly [number, string]”上不存在属性“push”
-})
+  /* --------------------------------- readonly --------------------------------- */
+  /* 
+  定义：只能对数组和元组使用
+  */
+  ; (function () {
+    //
+    // 1.数组
+    const list: readonly number[] = [1, 2, 3]
+    // list[0] = 0 // 类型“readonly number[]”中的索引签名仅允许读取
+    // 2.元组
+    const list1: readonly [number, string] = [1, '2']
+    // list1.push(3) // 类型“readonly [number, string]”上不存在属性“push”
+  })
 
-/* --------------------------------- keyof --------------------------------- */
-/* 
-定义：获取一个类或对象或一个而接口类型中的所有属性的联合类型
-*/
-;(function () {
-  class Test {
-    name!: string
-    say() {}
-  }
-  type T0 = keyof Test // 虽然不显示 但是在用的时候会检查 ? 静态属性如何获取
-  // let t: T0 = 'say1' // 类型“"say1"”不可分配给类型“keyof Test”
+  /* --------------------------------- keyof --------------------------------- */
+  /* 
+  定义：获取一个类或对象或一个而接口类型中的所有属性的联合类型
+  */
+  ; (function () {
+    class Test {
+      name!: string
+      say() { }
+    }
+    type T0 = keyof Test // 虽然不显示 但是在用的时候会检查 ? 静态属性如何获取
+    // let t: T0 = 'say1' // 类型“"say1"”不可分配给类型“keyof Test”
 
-  type T1 = keyof { a: 1; b: 2 } // "a" | "b"
-  type T2 = keyof string // string的所有属性
-  type T3 = keyof any // string | number | symbol
-})
+    type T1 = keyof { a: 1; b: 2 } // "a" | "b"
+    type T2 = keyof string // string的所有属性
+    type T3 = keyof any // string | number | symbol
+  })
 
-/* --------------------------------- infer --------------------------------- */
-/*
-1.定义：只能在extends语句中使用 后面跟一个泛型 表示声明一个类型
-2.出现的位置
-  - 1.函数的参数类型位置上
-  - 2.函数的返回值类型位置上
-  - 3.泛型具体化类型上
-*/
-;(function () {
-  // 示例1：表达式成立就会返回参数类型 否则就会返回传入的类型
-  type T1 = (name: string) => string
-  type inferType1<T> = T extends (params: infer P) => any ? P : T // type r1 = string
-  // type inferType<T> = T extends (params: infer P) => number ? P : T // ype r1 = (name: string) => string
-  type r1 = inferType1<T1>
+  /* --------------------------------- infer --------------------------------- */
+  /*
+  1.定义：只能在extends语句中使用 后面跟一个泛型 表示声明一个类型
+  2.出现的位置
+    - 1.函数的参数类型位置上
+    - 2.函数的返回值类型位置上
+    - 3.泛型具体化类型上
+  */
+  ; (function () {
+    // 示例1：表达式成立就会返回参数类型 否则就会返回传入的类型
+    type T1 = (name: string) => string
+    type inferType1<T> = T extends (params: infer P) => any ? P : T // type r1 = string
+    // type inferType<T> = T extends (params: infer P) => number ? P : T // ype r1 = (name: string) => string
+    type r1 = inferType1<T1>
 
-  // 示例2：表达式成立就会返回参数类型 否则就会返回传入的类型
-  type T2 = (name: string) => string
-  type inferType2<T> = T extends (params: any) => infer P ? P : T
-  type r2 = inferType2<T2>
+    // 示例2：表达式成立就会返回参数类型 否则就会返回传入的类型
+    type T2 = (name: string) => string
+    type inferType2<T> = T extends (params: any) => infer P ? P : T
+    type r2 = inferType2<T2>
 
-  // 示例3：
-  type T3<T> = T extends Set<infer P> ? P : T
-  type r3 = T3<Set<string>>
-  // type r3 = T3<number>
+    // 示例3：
+    type T3<T> = T extends Set<infer P> ? P : T
+    type r3 = T3<Set<string>>
+    // type r3 = T3<number>
 
-  // 示例4:
-  function test(a: number, b: number, c: number) {}
+    // 示例4:
+    function test(a: number, b: number, c: number) { }
 
-  function test1(
-    a: number,
-    ...args: Parameters<typeof test> extends [any, ...infer R] ? R : never
-  ) {
-    test(a, ...args)
-  }
-})
+    function test1(
+      a: number,
+      ...args: Parameters<typeof test> extends [any, ...infer R] ? R : never
+    ) {
+      test(a, ...args)
+    }
+  })
 
-/* --------------------------------- typeof --------------------------------- */
-;(function () {
-  const age: number = 13
-  type P = typeof age // number 获取类型
-})
+  /* --------------------------------- typeof --------------------------------- */
+  ; (function () {
+    const age: number = 13
+    type P = typeof age // number 获取类型
+  })
 
-/* --------------------------------- 三斜线指令 --------------------------------- */
-/* 
-- 类似于在声明文件中引入其他声明文件(只能放在最上面)
-  - 例如: /// <reference types="vite/client" />
-*/
-;(function () {})
+  /* --------------------------------- 三斜线指令 --------------------------------- */
+  /* 
+  - 类似于在声明文件中引入其他声明文件(只能放在最上面)
+    - 例如: /// <reference types="vite/client" />
+  */
+  ; (function () { })
 
-export {}
+  /* --------------------------------- 获取数组项类型 --------------------------------- */
+  ; (function () {
+    type QueryResult = {
+      col?: number;
+      row?: number;
+      value?: string;
+      indexNumber?: number[];
+    }[]
+
+    type A = QueryResult[number]
+  })
+
+export { }
